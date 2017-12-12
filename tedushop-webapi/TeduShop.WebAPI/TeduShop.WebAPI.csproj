@@ -302,11 +302,12 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="ClientsControllers\HomeController.cs" />
     <Compile Include="Controllers\AnnouncementController.cs" />
     <Compile Include="Controllers\AppRoleController.cs" />
     <Compile Include="Controllers\AppUserController.cs" />
     <Compile Include="Controllers\FunctionController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HomeHelpController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\PostCategoryController.cs" />
     <Compile Include="Controllers\ProductCategoryController.cs" />
@@ -364,7 +365,51 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Assets\css\bootstrap.css" />
+    <Content Include="Assets\css\etalage.css" />
+    <Content Include="Assets\css\style.css" />
+    <Content Include="Assets\images\arrows.png" />
+    <Content Include="Assets\images\bag.png" />
+    <Content Include="Assets\images\banner1.jpg" />
+    <Content Include="Assets\images\banner2.jpg" />
+    <Content Include="Assets\images\banner3.jpg" />
+    <Content Include="Assets\images\bg.jpg" />
+    <Content Include="Assets\images\compare.png" />
+    <Content Include="Assets\images\delivery.jpg" />
+    <Content Include="Assets\images\footer_bg.jpg" />
+    <Content Include="Assets\images\f_menu.png" />
+    <Content Include="Assets\images\img-sprite.png" />
+    <Content Include="Assets\images\logo.png" />
+    <Content Include="Assets\images\p1.jpg" />
+    <Content Include="Assets\images\p10.jpg" />
+    <Content Include="Assets\images\p11.jpg" />
+    <Content Include="Assets\images\p12.jpg" />
+    <Content Include="Assets\images\p13.jpg" />
+    <Content Include="Assets\images\p14.jpg" />
+    <Content Include="Assets\images\p2.jpg" />
+    <Content Include="Assets\images\p3.jpg" />
+    <Content Include="Assets\images\p4.jpg" />
+    <Content Include="Assets\images\p5.jpg" />
+    <Content Include="Assets\images\p6.jpg" />
+    <Content Include="Assets\images\p7.jpg" />
+    <Content Include="Assets\images\p8.jpg" />
+    <Content Include="Assets\images\p9.jpg" />
+    <Content Include="Assets\images\s1.jpg" />
+    <Content Include="Assets\images\s2.jpg" />
+    <Content Include="Assets\images\s3.jpg" />
+    <Content Include="Assets\images\s4.jpg" />
+    <Content Include="Assets\images\search.png" />
+    <Content Include="Assets\images\tick1.png" />
+    <Content Include="Assets\images\wishlist.png" />
+    <Content Include="Assets\js\easyResponsiveTabs.js" />
+    <Content Include="Assets\js\hover_pack.js" />
+    <Content Include="Assets\js\jquery-1.11.1.min.js" />
+    <Content Include="Assets\js\jquery.etalage.min.js" />
+    <Content Include="Assets\js\nav.js" />
+    <Content Include="Assets\js\responsiveslides.min.js" />
     <Content Include="Global.asax" />
+    <Content Include="Assets\images\img-sprite.psd" />
+    <Content Include="Assets\images\Thumbs.db" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -378,11 +423,18 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\Footer.cshtml" />
+    <Content Include="Views\Shared\Header.cshtml" />
+    <Content Include="Views\Shared\Search.cshtml" />
+    <Content Include="Views\Shared\Slider.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Reports\" />
     <Folder Include="UploadedFiles\" />
-    <Folder Include="Views\test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

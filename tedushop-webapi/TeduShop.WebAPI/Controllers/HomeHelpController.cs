@@ -2,7 +2,7 @@
 
 namespace TeduShop.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeHelpController : Controller
     {
         public ActionResult Index()
         {

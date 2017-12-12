@@ -9,12 +9,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BA9988CE-3470-4335-81DC-526C4F969384}</ProjectGuid>
+    <ProjectGuid>{05330B2F-FF05-49D8-B570-62060AB7D4F6}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TeduShop.Web</RootNamespace>
-    <AssemblyName>TeduShop.Web</AssemblyName>
+    <RootNamespace>TeduShop.WebClients</RootNamespace>
+    <AssemblyName>TeduShop.WebClients</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -52,6 +55,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -225,9 +229,11 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Header.cshtml" />
+    <Content Include="Views\Shared\Slider.cshtml" />
+    <Content Include="Views\Shared\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -248,6 +254,32 @@
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TeduShop.Common\TeduShop.Common.csproj">
+      <Project>{300cc7f5-31a6-44b7-8d90-f354ac34b936}</Project>
+      <Name>TeduShop.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TeduShop.Data\TeduShop.Data.csproj">
+      <Project>{d573cfed-f642-4868-b921-4226cb26cdfe}</Project>
+      <Name>TeduShop.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TeduShop.Model\TeduShop.Model.csproj">
+      <Project>{1a60e027-7b3b-4881-9ec3-2666b297cb43}</Project>
+      <Name>TeduShop.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TeduShop.Service\TeduShop.Service.csproj">
+      <Project>{7eb49ce5-4c7a-46d0-b381-eb19a5f8dfaa}</Project>
+      <Name>TeduShop.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TeduShop.UnitTest\TeduShop.UnitTest.csproj">
+      <Project>{2e7049c4-3ea9-4abc-88ea-e63fc64814d7}</Project>
+      <Name>TeduShop.UnitTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TeduShop.WebAPI\TeduShop.WebAPI.csproj">
+      <Project>{9fdd5a55-9084-4992-918d-02d0e6b0fad8}</Project>
+      <Name>TeduShop.WebAPI</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -264,9 +296,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>49993</DevelopmentServerPort>
+          <DevelopmentServerPort>59851</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:49993/</IISUrl>
+          <IISUrl>http://localhost:59851/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
