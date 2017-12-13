@@ -1,27 +1,17 @@
-﻿<div class="slider">
+﻿@model IEnumerable<TeduShop.Web.Models.SlideViewModel>
+<div class="slider">
     <div class="callbacks_container">
         <ul class="rslides" id="slider">
-            <li>
-                <img src="/Assets/images/banner1.jpg" class="img-responsive" alt="" />
-                <div class="banner_desc">
-                    <h1>We Provide Worlds top fashion for less fashionpress.</h1>
-                    <h2>FashionPress the name of the of hi class fashion Web FreePsd.</h2>
-                </div>
-            </li>
-            <li>
-                <img src="/Assets/images/banner2.jpg" class="img-responsive" alt="" />
-                <div class="banner_desc">
-                    <h1>Duis autem vel eum iriure dolor in hendrerit.</h1>
-                    <h2>Claritas est etiam processus dynamicus, qui sequitur .</h2>
-                </div>
-            </li>
-            <li>
-                <img src="/Assets/images/banner3.jpg" class="img-responsive" alt="" />
-                <div class="banner_desc">
-                    <h1>Ut wisi enim ad minim veniam, quis nostrud.</h1>
-                    <h2>Mirum est notare quam littera gothica, quam nunc putamus.</h2>
-                </div>
-            </li>
+            @foreach (var slide in Model)
+            {
+                <li>
+                    <img src="@slide.Image" class="img-responsive" alt="@slide.Name" />
+                    <div class="banner_desc">
+                        @Html.Raw(slide.Content)
+                    </div>
+                </li>
+            }
+            
         </ul>
     </div>
 </div>

@@ -12,7 +12,7 @@ import { MessageContstants } from '../../core/common/message.constants';
 export class RoleComponent implements OnInit {
   @ViewChild('modalAddEdit') public modalAddEdit: ModalDirective;
   public pageIndex: number = 1;
-  public pageSize: number = 20;
+  public pageSize: number = 10;
   public pageDisplay: number = 10;
   public totalRow: number;
   public filter: string = '';

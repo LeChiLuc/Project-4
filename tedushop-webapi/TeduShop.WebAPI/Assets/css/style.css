@@ -894,8 +894,9 @@ ul.grid_2-bottom li.grid_2-left p small {
 .top_grid1-box{
 	padding:0;
 }
-.top_grid1-box1{
-	padding-right:0;
+.top_grid1-box1 {
+    padding-right: 0;
+    height: 485px;
 }
 .top_grid2-box2 {
 	padding-left: 0;

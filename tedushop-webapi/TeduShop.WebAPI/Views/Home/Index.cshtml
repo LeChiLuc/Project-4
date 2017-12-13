@@ -2,6 +2,9 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var listLastestProduct = (IEnumerable<TeduShop.Web.Models.ProductViewModel>)ViewBag.lastestProductView;
+    var listTopHotProduct = (IEnumerable<TeduShop.Web.Models.ProductViewModel>)ViewBag.topHotProductView;
 }
 
 @section productCategory{
@@ -89,260 +92,59 @@
 }
 
 <div class="col-md-9 content_right">
-    <div class="top_grid1">
-        <div class="col-md-4 box_2">
-            <div class="grid_1">
-                <a href="single.html">
-                    <div class="b-link-stroke b-animate-go  thickbox">
-                        <img src="/Assets/images/p1.jpg" class="img-responsive" alt="" />
+    <h4 class="head">Sản phẩm<span class="m_2"> mới nhất</span></h4>
+    <div class="top_grid2">
+        @foreach (var product in listLastestProduct)
+        {
+             var url = "/" + product.Alias + ".p-" + product.ID + ".html";
+            <div class="col-md-4 top_grid1-box1">
+                <a href="@url">
+                    <div class="grid_1">
+                        <div class="b-link-stroke b-animate-go  thickbox">
+                            <img src="@product.ThumbnailImage" class="img-responsive" alt="" />
+                        </div>
+                        <div class="grid_2">
+                            <p>@product.Name</p>
+                            <ul class="grid_2-bottom">
+                                <li class="grid_2-left"><p>$@product.Price.ToString("N0")</p></li>
+                                <li class="grid_2-right"><div class="btn btn-primary btn-normal btn-inline " target="_self" title="Get It">Thêm</div></li>
+                                <div class="clearfix"> </div>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="grid_2">
-                        <p>There are many variations of passages</p>
-                        <ul class="grid_2-bottom">
-                            <li class="grid_2-left"><p>$99<small>.33</small></p></li>
-                            <li class="grid_2-right"><div class="btn btn-primary btn-normal btn-inline " target="_self" title="Get It">Get It</div></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                    </div>
+                </a>
             </div>
-            </a>
-        </div>
-        <div class="col-md-8 box_1">
-            <a href="single.html">
-                <div class="grid_1">
-                    <div class="b-link-stroke b-animate-go  thickbox">
-                        <img src="/Assets/images/p2.jpg" class="img-responsive" alt="" />
-                    </div>
-                    <div class="grid_2">
-                        <p>There are many variations of passages</p>
-                        <ul class="grid_2-bottom">
-                            <li class="grid_2-left"><p>$99<small>.33</small></p></li>
-                            <li class="grid_2-right"><div class="btn btn-primary btn-normal btn-inline " target="_self" title="Get It">Get It</div></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                    </div>
-                </div>
-            </a>
-        </div>
+        }
+        
         <div class="clearfix"> </div>
     </div>
+    <h4 class="head">Sản phẩm bán <span class="m_2">chạy nhất</span></h4>
     <div class="top_grid2">
-        <div class="col-md-4 top_grid1-box1">
-            <a href="single.html">
-                <div class="grid_1">
-                    <div class="b-link-stroke b-animate-go  thickbox">
-                        <img src="/Assets/images/p3.jpg" class="img-responsive" alt="" />
+        @foreach (var product in listTopHotProduct)
+        {
+            var url = "/" + product.Alias + ".p-" + product.ID + ".html";
+            <div class="col-md-4 top_grid1-box1">
+                <a href="@url">
+                    <div class="grid_1">
+                        <div class="b-link-stroke b-animate-go  thickbox">
+                            <img src="@product.ThumbnailImage" class="img-responsive" alt="" />
+                        </div>
+                        <div class="grid_2">
+                            <p>@product.Name</p>
+                            <ul class="grid_2-bottom">
+                                <li class="grid_2-left"><p>$@product.Price.ToString("N0")</p></li>
+                                <li class="grid_2-right"><div class="btn btn-primary btn-normal btn-inline " target="_self" title="Get It">Thêm</div></li>
+                                <div class="clearfix"> </div>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="grid_2">
-                        <p>There are many variations of passages</p>
-                        <ul class="grid_2-bottom">
-                            <li class="grid_2-left"><p>$99<small>.33</small></p></li>
-                            <li class="grid_2-right"><div class="btn btn-primary btn-normal btn-inline " target="_self" title="Get It">Get It</div></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4 top_grid1-box1">
-            <a href="single.html">
-                <div class="grid_1">
-                    <div class="b-link-stroke b-animate-go  thickbox">
-                        <img src="/Assets/images/p4.jpg" class="img-responsive" alt="" />
-                    </div>
-                    <div class="grid_2">
-                        <p>There are many variations of passages</p>
-                        <ul class="grid_2-bottom">
-                            <li class="grid_2-left"><p>$99<small>.33</small></p></li>
-                            <li class="grid_2-right"><div class="btn btn-primary btn-normal btn-inline " target="_self" title="Get It">Get It</div></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4 top_grid1-box1">
-            <a href="single.html">
-                <div class="grid_1">
-                    <div class="b-link-stroke b-animate-go  thickbox">
-                        <img src="/Assets/images/p5.jpg" class="img-responsive" alt="" />
-                    </div>
-                    <div class="grid_2">
-                        <p>There are many variations of passages</p>
-                        <ul class="grid_2-bottom">
-                            <li class="grid_2-left"><p>$99<small>.33</small></p></li>
-                            <li class="grid_2-right"><div class="btn btn-primary btn-normal btn-inline " target="_self" title="Get It">Get It</div></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                    </div>
-                </div>
-            </a>
-        </div>
+                </a>
+            </div>
+        }
+        
         <div class="clearfix"> </div>
     </div>
-    <div class="top_grid2">
-        <div class="col-md-4 top_grid1-box1">
-            <a href="single.html">
-                <div class="grid_1">
-                    <div class="b-link-stroke b-animate-go  thickbox">
-                        <img src="/Assets/images/p6.jpg" class="img-responsive" alt="" />
-                    </div>
-                    <div class="grid_2">
-                        <p>There are many variations of passages</p>
-                        <ul class="grid_2-bottom">
-                            <li class="grid_2-left"><p>$99<small>.33</small></p></li>
-                            <li class="grid_2-right"><div class="btn btn-primary btn-normal btn-inline " target="_self" title="Get It">Get It</div></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4 top_grid1-box1">
-            <a href="single.html">
-                <div class="grid_1">
-                    <div class="b-link-stroke b-animate-go  thickbox">
-                        <img src="/Assets/images/p7.jpg" class="img-responsive" alt="" />
-                    </div>
-                    <div class="grid_2">
-                        <p>There are many variations of passages</p>
-                        <ul class="grid_2-bottom">
-                            <li class="grid_2-left"><p>$99<small>.33</small></p></li>
-                            <li class="grid_2-right"><div class="btn btn-primary btn-normal btn-inline " target="_self" title="Get It">Get It</div></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4 top_grid1-box1">
-            <a href="single.html">
-                <div class="grid_1">
-                    <div class="b-link-stroke b-animate-go  thickbox">
-                        <img src="/Assets/images/p8.jpg" class="img-responsive" alt="" />
-                    </div>
-                    <div class="grid_2">
-                        <p>There are many variations of passages</p>
-                        <ul class="grid_2-bottom">
-                            <li class="grid_2-left"><p>$99<small>.33</small></p></li>
-                            <li class="grid_2-right"><div class="btn btn-primary btn-normal btn-inline " target="_self" title="Get It">Get It</div></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="clearfix"> </div>
-    </div>
-    <h4 class="head"><span class="m_2">Popular</span> Products Now</h4>
-    <div class="top_grid2">
-        <div class="col-md-4 top_grid1-box1">
-            <a href="single.html">
-                <div class="grid_1">
-                    <div class="b-link-stroke b-animate-go  thickbox">
-                        <img src="/Assets/images/p9.jpg" class="img-responsive" alt="" />
-                    </div>
-                    <div class="grid_2">
-                        <p>There are many variations of passages</p>
-                        <ul class="grid_2-bottom">
-                            <li class="grid_2-left"><p>$99<small>.33</small></p></li>
-                            <li class="grid_2-right"><div class="btn btn-primary btn-normal btn-inline " target="_self" title="Get It">Get It</div></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4 top_grid1-box1">
-            <a href="single.html">
-                <div class="grid_1">
-                    <div class="b-link-stroke b-animate-go  thickbox">
-                        <img src="/Assets/images/p10.jpg" class="img-responsive" alt="" />
-                    </div>
-                    <div class="grid_2">
-                        <p>There are many variations of passages</p>
-                        <ul class="grid_2-bottom">
-                            <li class="grid_2-left"><p>$99<small>.33</small></p></li>
-                            <li class="grid_2-right"><div class="btn btn-primary btn-normal btn-inline " target="_self" title="Get It">Get It</div></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4 top_grid1-box1">
-            <a href="single.html">
-                <div class="grid_1">
-                    <div class="b-link-stroke b-animate-go  thickbox">
-                        <img src="/Assets/images/p11.jpg" class="img-responsive" alt="" />
-                    </div>
-                    <div class="grid_2">
-                        <p>There are many variations of passages</p>
-                        <ul class="grid_2-bottom">
-                            <li class="grid_2-left"><p>$99<small>.33</small></p></li>
-                            <li class="grid_2-right"><div class="btn btn-primary btn-normal btn-inline " target="_self" title="Get It">Get It</div></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="clearfix"> </div>
-    </div>
-    <div class="top_grid2">
-        <div class="col-md-4 top_grid1-box1">
-            <a href="single.html">
-                <div class="grid_1">
-                    <div class="b-link-stroke b-animate-go  thickbox">
-                        <img src="/Assets/images/p12.jpg" class="img-responsive" alt="" />
-                    </div>
-                    <div class="grid_2">
-                        <p>There are many variations of passages</p>
-                        <ul class="grid_2-bottom">
-                            <li class="grid_2-left"><p>$99<small>.33</small></p></li>
-                            <li class="grid_2-right"><div class="btn btn-primary btn-normal btn-inline " target="_self" title="Get It">Get It</div></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4 top_grid1-box1">
-            <a href="single.html">
-                <div class="grid_1">
-                    <div class="b-link-stroke b-animate-go  thickbox">
-                        <img src="/Assets/images/p13.jpg" class="img-responsive" alt="" />
-                    </div>
-                    <div class="grid_2">
-                        <p>There are many variations of passages</p>
-                        <ul class="grid_2-bottom">
-                            <li class="grid_2-left"><p>$99<small>.33</small></p></li>
-                            <li class="grid_2-right"><div class="btn btn-primary btn-normal btn-inline " target="_self" title="Get It">Get It</div></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4 top_grid1-box1">
-            <a href="single.html">
-                <div class="grid_1">
-                    <div class="b-link-stroke b-animate-go  thickbox">
-                        <img src="/Assets/images/p14.jpg" class="img-responsive" alt="" />
-                    </div>
-                    <div class="grid_2">
-                        <p>There are many variations of passages</p>
-                        <ul class="grid_2-bottom">
-                            <li class="grid_2-left"><p>$99<small>.33</small></p></li>
-                            <li class="grid_2-right"><div class="btn btn-primary btn-normal btn-inline " target="_self" title="Get It">Get It</div></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="clearfix"> </div>
-    </div>
+
 </div>
 
 
