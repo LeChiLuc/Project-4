@@ -5,6 +5,26 @@
 
     var listLastestProduct = (IEnumerable<TeduShop.Web.Models.ProductViewModel>)ViewBag.lastestProductView;
     var listTopHotProduct = (IEnumerable<TeduShop.Web.Models.ProductViewModel>)ViewBag.topHotProductView;
+    var listSlides = (IEnumerable<TeduShop.Web.Models.SlideViewModel>)ViewBag.listSlideViewModel;
+}
+
+@section slider{
+    <div class="slider">
+    <div class="callbacks_container">
+        <ul class="rslides" id="slider">
+            @foreach (var slide in listSlides)
+            {
+                <li>
+                    <img src="@slide.Image" class="img-responsive" alt="@slide.Name" />
+                    <div class="banner_desc">
+                        @Html.Raw(slide.Content)
+                    </div>
+                </li>
+            }
+
+        </ul>
+    </div>
+</div>
 }
 
 @section productCategory{
@@ -18,7 +38,7 @@
                             var url = "/" + category.Alias + ".pc-" + category.ID + ".html";
                             var childCategories = Model.Where(x => x.ParentID == category.ID);
                             <li class="item1">
-                                <a href="@url">@Html.Raw(childCategories.Count()>0 ? " <img class=\"arrow-img\" src=\"/Assets/images/f_menu.png\" alt=\"\" />" : "") @category.Name</a>
+                                <a href="@url">@Html.Raw(childCategories.Count()>0 ? " <img class=\"arrow-img\" src=\"/Assets//Assets//Assets//Assets/images/f_menu.png\" alt=\"\" />" : "") @category.Name</a>
                                 @if (childCategories.Count() > 0)
                                 {
                                     <ul class="cute">
@@ -57,7 +77,7 @@
             </script>
         </div>
         <div class="delivery">
-            <img src="/Assets/images/delivery.jpg" class="img-responsive" alt="" />
+            <img src="/Assets//Assets//Assets//Assets/images/delivery.jpg" class="img-responsive" alt="" />
             <h3>Delivering</h3>
             <h4>World Wide</h4>
         </div>
@@ -107,7 +127,7 @@
                             <p>@product.Name</p>
                             <ul class="grid_2-bottom">
                                 <li class="grid_2-left"><p>$@product.Price.ToString("N0")</p></li>
-                                <li class="grid_2-right"><div class="btn btn-primary btn-normal btn-inline " target="_self" title="Get It">Thêm</div></li>
+                                <li class="grid_2-right"><div class="btn btn-primary btn-normal btn-inline " target="_self" title="Get It" id="btnAddToCart">Thêm</div></li>
                                 <div class="clearfix"> </div>
                             </ul>
                         </div>
@@ -133,7 +153,7 @@
                             <p>@product.Name</p>
                             <ul class="grid_2-bottom">
                                 <li class="grid_2-left"><p>$@product.Price.ToString("N0")</p></li>
-                                <li class="grid_2-right"><div class="btn btn-primary btn-normal btn-inline " target="_self" title="Get It">Thêm</div></li>
+                                <li class="grid_2-right"><div class="btn btn-primary btn-normal btn-inline " target="_self" title="Get It" id="btnAddToCart">Thêm</div></li>
                                 <div class="clearfix"> </div>
                             </ul>
                         </div>

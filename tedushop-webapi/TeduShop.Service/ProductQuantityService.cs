@@ -21,6 +21,8 @@ namespace TeduShop.Service
 
         List<Color> GetListColor();
 
+        ProductQuantity GetById(int id);
+
         void Save();
     }
 
@@ -66,6 +68,11 @@ namespace TeduShop.Service
                 query = query.Where(x => x.ColorId == colorId.Value);
             return query.ToList();
 
+        }
+
+        public ProductQuantity GetById(int id)
+        {
+            return _productQuantityRepository.GetSingleById(id);
         }
 
         public List<Color> GetListColor()

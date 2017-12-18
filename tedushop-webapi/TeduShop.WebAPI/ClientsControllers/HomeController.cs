@@ -24,6 +24,8 @@ namespace TeduShop.Web.ClientsControllers
         // GET: Home
         public ActionResult Index()
         {
+            var slide = _commonService.GetSlides();
+            ViewBag.listSlideViewModel = Mapper.Map<IEnumerable<Slide>, IEnumerable<SlideViewModel>>(slide);
             var model = _productCategogyService.GetAll();
             var listProductCategoryViewModel = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
             var lastestProductModel = _productService.GetLastest(6);
@@ -44,13 +46,6 @@ namespace TeduShop.Web.ClientsControllers
         public ActionResult Header()
         {
             return PartialView();
-        }
-        [ChildActionOnly]
-        public ActionResult Slider()
-        {
-            var model = _commonService.GetSlides();
-            var listSlideViewModel = Mapper.Map<IEnumerable<Slide>, IEnumerable<SlideViewModel>>(model);
-            return View(listSlideViewModel);
         }
         [ChildActionOnly]
         public ActionResult Search()

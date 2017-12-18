@@ -302,7 +302,10 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="ClientsControllers\AccountController.cs" />
     <Compile Include="ClientsControllers\HomeController.cs" />
+    <Compile Include="ClientsControllers\ProController.cs" />
+    <Compile Include="ClientsControllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\AnnouncementController.cs" />
     <Compile Include="Controllers\AppRoleController.cs" />
     <Compile Include="Controllers\AppUserController.cs" />
@@ -367,7 +370,10 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Assets\css\bootstrap.css" />
     <Content Include="Assets\css\etalage.css" />
+    <Content Include="Assets\css\font-awesome.min.css" />
+    <Content Include="Assets\css\jquery-ui.min.css" />
     <Content Include="Assets\css\style.css" />
+    <Content Include="Assets\fonts\fontawesome-webfont.svg" />
     <Content Include="Assets\images\arrows.png" />
     <Content Include="Assets\images\bag.png" />
     <Content Include="Assets\images\banner1.jpg" />
@@ -404,17 +410,26 @@
     <Content Include="Assets\js\easyResponsiveTabs.js" />
     <Content Include="Assets\js\hover_pack.js" />
     <Content Include="Assets\js\jquery-1.11.1.min.js" />
+    <Content Include="Assets\js\jquery-ui.min.js" />
     <Content Include="Assets\js\jquery.etalage.min.js" />
     <Content Include="Assets\js\nav.js" />
     <Content Include="Assets\js\responsiveslides.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Assets\images\img-sprite.psd" />
     <Content Include="Assets\images\Thumbs.db" />
+    <Content Include="Assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="Assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="Assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Assets\fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\common\common.js" />
+    <Content Include="Scripts\common\shoppingCart.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery.signalR-2.1.2.js" />
     <Content Include="Scripts\jquery.signalR-2.1.2.min.js" />
+    <Content Include="Scripts\mustache.min.js" />
     <Content Include="Templates\product-detail.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -428,9 +443,13 @@
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Views\Shared\Search.cshtml" />
-    <Content Include="Views\Shared\Slider.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Pro\Category.cshtml" />
+    <Content Include="Views\Pro\Detail.cshtml" />
+    <Content Include="Views\Pro\Search.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\ShoppingCart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Reports\" />

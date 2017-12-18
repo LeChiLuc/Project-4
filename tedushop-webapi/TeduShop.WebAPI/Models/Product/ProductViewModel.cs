@@ -52,7 +52,6 @@ namespace TeduShop.Web.Models
 
         public bool Checked { set; get; }
 
-
         public decimal OriginalPrice { set; get; }
         public virtual ProductCategoryViewModel ProductCategory { set; get; }
     }

@@ -24,9 +24,9 @@ namespace TeduShop.Service
 
         IEnumerable<Product> GetHotProduct(int top);
 
-        IEnumerable<Product> GetListProductByCategoryIdPaging(int categoryId, int page, int pageSize, string sort, out int totalRow);
+        IEnumerable<Product> GetListProductByCategoryIdPaging(int categoryId, int page, int pageSize, out int totalRow);
 
-        IEnumerable<Product> Search(string keyword, int page, int pageSize, string sort, out int totalRow);
+        IEnumerable<Product> Search(string keyword, int page, int pageSize, out int totalRow);
 
         IEnumerable<Product> GetListProduct(string keyword);
 
@@ -165,28 +165,28 @@ namespace TeduShop.Service
             return _productRepository.GetMulti(x => x.Status && x.HotFlag == true).OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
-        public IEnumerable<Product> GetListProductByCategoryIdPaging(int categoryId, int page, int pageSize, string sort, out int totalRow)
+        public IEnumerable<Product> GetListProductByCategoryIdPaging(int categoryId, int page, int pageSize, out int totalRow)
         {
             var query = _productRepository.GetMulti(x => x.Status && x.CategoryID == categoryId);
 
-            switch (sort)
-            {
-                case "popular":
-                    query = query.OrderByDescending(x => x.ViewCount);
-                    break;
+            //switch (sort)
+            //{
+            //    case "popular":
+            //        query = query.OrderByDescending(x => x.ViewCount);
+            //        break;
 
-                case "discount":
-                    query = query.OrderByDescending(x => x.PromotionPrice.HasValue);
-                    break;
+            //    case "discount":
+            //        query = query.OrderByDescending(x => x.PromotionPrice.HasValue);
+            //        break;
 
-                case "price":
-                    query = query.OrderBy(x => x.Price);
-                    break;
+            //    case "price":
+            //        query = query.OrderBy(x => x.Price);
+            //        break;
 
-                default:
-                    query = query.OrderByDescending(x => x.CreatedDate);
-                    break;
-            }
+            //    default:
+            //        query = query.OrderByDescending(x => x.CreatedDate);
+            //        break;
+            //}
 
             totalRow = query.Count();
 
@@ -198,28 +198,28 @@ namespace TeduShop.Service
             return _productRepository.GetMulti(x => x.Status && x.Name.Contains(name)).Select(y => y.Name);
         }
 
-        public IEnumerable<Product> Search(string keyword, int page, int pageSize, string sort, out int totalRow)
+        public IEnumerable<Product> Search(string keyword, int page, int pageSize, out int totalRow)
         {
             var query = _productRepository.GetMulti(x => x.Status && x.Name.Contains(keyword));
 
-            switch (sort)
-            {
-                case "popular":
-                    query = query.OrderByDescending(x => x.ViewCount);
-                    break;
+            //switch (sort)
+            //{
+            //    case "popular":
+            //        query = query.OrderByDescending(x => x.ViewCount);
+            //        break;
 
-                case "discount":
-                    query = query.OrderByDescending(x => x.PromotionPrice.HasValue);
-                    break;
+            //    case "discount":
+            //        query = query.OrderByDescending(x => x.PromotionPrice.HasValue);
+            //        break;
 
-                case "price":
-                    query = query.OrderBy(x => x.Price);
-                    break;
+            //    case "price":
+            //        query = query.OrderBy(x => x.Price);
+            //        break;
 
-                default:
-                    query = query.OrderByDescending(x => x.CreatedDate);
-                    break;
-            }
+            //    default:
+            //        query = query.OrderByDescending(x => x.CreatedDate);
+            //        break;
+            //}
 
             totalRow = query.Count();
 

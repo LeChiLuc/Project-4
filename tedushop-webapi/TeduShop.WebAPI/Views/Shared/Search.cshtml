@@ -3,8 +3,10 @@
         <div class="search">
             <div class="stay">Search Product</div>
             <div class="stay_right">
-                <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
-                <input type="submit" value="">
+                <form action="/tim-kiem.html" method="get">
+                    <input type="text" id="txtKeyword" name="keyword" placeholder="Từ khóa">
+                    <input type="submit" value="Tìm kiếm" id="btnSearch">
+                </form>              
             </div>
             <div class="clearfix"> </div>
         </div>

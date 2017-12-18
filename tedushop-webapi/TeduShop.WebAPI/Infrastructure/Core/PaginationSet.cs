@@ -9,5 +9,14 @@ namespace TeduShop.Web.Infrastructure.Core
         public int PageSize { get; set; }
         public int TotalRows { set; get; }
         public IEnumerable<T> Items { set; get; }
+        public int Count
+        {
+            get
+            {
+                return (Items != null) ? Items.Count() : 0;
+            }
+        }
+        public int MaxPage { set; get; }
+        public int TotalPages { set; get; }
     }
 }
