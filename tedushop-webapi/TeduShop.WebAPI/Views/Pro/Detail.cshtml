@@ -161,7 +161,7 @@
                     </ul>
                     <div class="clearfix"></div>
                 </div>
-                <a href="/them-gio-hang/@Model.ID" title="Online Reservation" class="btn bt1 btn-primary btn-normal btn-inline " target="_self" data-id="@Model.ID" id="btnAddToCart">Thêm vào giỏ hàng</a>
+                <a href="/gio-hang.html" title="Online Reservation" class="btn bt1 btn-primary btn-normal btn-inline " target="_self" data-id="@Model.ID" id="btnAddToCart">Thêm vào giỏ hàng</a>
             </div>
             <div class="clearfix"> </div>
         </div>
@@ -217,7 +217,7 @@
                             <p>@product.Name</p>
                             <ul class="grid_2-bottom">
                                 <li class="grid_2-left"><p>$@product.Price.ToString("N0")</p></li>
-                                <li class="grid_2-right"><a href="/@(product.Alias).p-@(product.ID).html" title="Get It" class="btn btn-primary btn-normal btn-inline " target="_self" id="btnAddToCart">Thêm</a></li>
+                                <li class="grid_2-right"><a href="/@(product.Alias).p-@(product.ID).html" title="Get It" class="btn btn-primary btn-normal btn-inline " target="_self" data-id="@product.ID" id="btnAddToCart">Thêm</a></li>
                                 <div class="clearfix"> </div>
                             </ul>
                         </div>

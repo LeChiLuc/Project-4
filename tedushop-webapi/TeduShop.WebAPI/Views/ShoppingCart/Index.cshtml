@@ -16,7 +16,7 @@
                         var url = "/" + category.Alias + ".pc-" + category.ID + ".html";
                         var childCategories = listCategories.Where(x => x.ParentID == category.ID);
                         <li class="item1">
-                            <a href="@url">@Html.Raw(childCategories.Count() > 0 ? " <img class=\"arrow-img\" src=\"/Assets//Assets//Assets//Assets/images/f_menu.png\" alt=\"\" />" : "") @category.Name</a>
+                            <a href="@url">@Html.Raw(childCategories.Count() > 0 ? " <img class=\"arrow-img\" src=\"/Assets/images/f_menu.png\" alt=\"\" />" : "") @category.Name</a>
                             @if (childCategories.Count() > 0)
                             {
                                 <ul class="cute">
@@ -55,7 +55,7 @@
             </script>
         </div>
         <div class="delivery">
-            <img src="/Assets//Assets//Assets//Assets/images/delivery.jpg" class="img-responsive" alt="" />
+            <img src="/Assets/images/delivery.jpg" class="img-responsive" alt="" />
             <h3>Delivering</h3>
             <h4>World Wide</h4>
         </div>
@@ -93,22 +93,55 @@
 <div class="col-md-9 single_right">
     <div class="single_top">
         <div class="single_grid">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <td>STT</td>
-                        <td>Tên sản phẩm</td>
-                        <td>Hình ảnh</td>
-                        <td>Giá</td>
-                        <td>Số lượng</td>
-                        <td>Thành tiền</td>
-                        <td>#</td>
-                    </tr>
-                </thead>
-                <tbody id="cartBody">
-                    
-                </tbody>
-            </table>
+            <div id="cartContent">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>STT</td>
+                            <td>Tên sản phẩm</td>
+                            <td>Hình ảnh</td>
+                            <td>Giá</td>
+                            <td>Số lượng</td>
+                            <td>Thành tiền</td>
+                            <td>#</td>
+                        </tr>
+                    </thead>
+                    <tbody id="cartBody"></tbody>
+                </table>
+                <button class="btn btn-success" id="btnContinue">Tiếp tục mua hàng</button>
+                <button class="btn btn-danger" id="btnDeleteAll">Xóa giỏ hàng</button>
+                <button class="btn" id="btnCheckout">Thanh toán</button>
+                <div class="pull-right">
+                    Tổng tiền: <span id="lblTotalOrder"></span>
+                </div>
+            </div>
+            <div class="contact-form" id="divCheckout" style="display: none">
+                <h3>Thanh toán</h3>
+                <form method="post" action="contact-post.html">
+                   @if (Request.IsAuthenticated)
+                   {
+                    <label>
+                        <input type="checkbox" id="chkUserLoginInfo" />Sử dụng thông tin đăng nhập
+                    </label>
+                   }
+                    <p class="comment-form-author">
+                        <input type="text" class="textbox" id="txtName" placeholder="Họ tên">
+                    </p>
+                    <p class="comment-form-author">
+                        <input type="text" class="textbox" id="txtAddress" placeholder="Địa chỉ">
+                    </p>
+                    <p class="comment-form-author">
+                        <input type="text" class="textbox" id="txtEmail" placeholder="Email">
+                    </p>
+                    <p class="comment-form-author">
+                        <input type="text" class="textbox" id="txtPhone" placeholder="Điện thoại">
+                    </p>
+                    <p class="comment-form-author">
+                        <textarea value="" placeholder="Ghi chú" id="txtMessage"></textarea>
+                    </p>
+                    <input type="submit" id="submit" value="Thanh toán">
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -118,9 +151,9 @@
         <td>{{ProductId}}</td>
         <td>{{ProductName}}</td>
         <td><img src="{{Image}}" style="width:100px;" class="img-responsive" /></td>
-        <td>${{Price}}</td>
-        <td><input type="number" data-id="{{ProductId}}" value="{{Quantity}}" class="input" /></td>
-        <td>{{Amount}}</td>
+        <td >${{Price}}</td>
+        <td><input type="number" data-id="{{ProductId}}" data-price="{{Price}}" value="{{Quantity}}" class="input txtQuantity" /></td>
+        <td id="amount_{{ProductId}}">${{Amount}}</td>
         <td>
             <button class="btn btn-danger btnDeleteItem" data-id="{{ProductId}}"><i class="fa fa-close"></i></button>
         </td>

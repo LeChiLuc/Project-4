@@ -3,6 +3,10 @@
         common.registerEvents();
     },
     registerEvents: function () {
+        $('#btnAddToCart').off('click').on('click', function () {
+            var productId = parseInt($(this).data('id'));
+            cart.addItem(productId);
+        });
         $("#txtKeyword").autocomplete({
             minLength: 0,
             source: function (request, response) {

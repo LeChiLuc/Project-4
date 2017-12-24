@@ -1,4 +1,6 @@
 ﻿@model TeduShop.Web.Models.RegisterViewModel
+@using BotDetect.Web.Mvc;
+<link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" rel="stylesheet" type="text/css" />
 @{
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,6 +11,16 @@
         <div class="register">
             @using (Html.BeginForm("Register", "Account", FormMethod.Post))
             {
+                @Html.AntiForgeryToken(); //Ngăn chặn việc submit liên tục
+                @Html.ValidationSummary(false,"",new { @Class = "text-danger" }) //Mặc định là true: bỏ qua các lỗi đc phát sinh trong modelvalidation,
+                                                                            //false: hiển thị tất Hiển thị lỗi từ server trả về
+                if(ViewData["Successmsg"] != null)
+                {
+                    <div class="alert alert-success" role="alert">
+                        <strong>Chúc mừng bạn!</strong>đã đăng ký thành công.
+                        <br />Vui lòng nhấn <a href="/dang-nhap.html">vào đây</a> để đăng nhập.
+                    </div>
+                }
                 <div class="register-top-grid">
                     <h3>Thông tin cá nhân</h3>
                     <div>
@@ -34,6 +46,11 @@
                     <div>
                         <span>Mật khẩu<label>*</label></span>
                         @Html.PasswordFor(model => model.Password)
+                    </div>
+                    <div>
+                        @{ MvcCaptcha registerCaptcha = new MvcCaptcha("registerCaptcha"); }
+                        @Html.Captcha(registerCaptcha)
+                        @Html.TextBox("CaptchaCode")
                     </div>
                     <div class="clearfix"> </div>     
                 </div>

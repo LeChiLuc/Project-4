@@ -8,7 +8,9 @@ using System.Web.Script.Serialization;
 using TeduShop.Common;
 using TeduShop.Model.Models;
 using TeduShop.Service;
+using TeduShop.Web.App_Start;
 using TeduShop.Web.Models;
+using Microsoft.AspNet.Identity;
 
 namespace TeduShop.Web.ClientsControllers
 {
@@ -16,11 +18,13 @@ namespace TeduShop.Web.ClientsControllers
     {
         IProductCategoryService _productCategogyService;
         IProductService _productService;
+        ApplicationUserManager _userManager;
 
-        public ShoppingCartController(IProductCategoryService productCategogyService, IProductService productService)
+        public ShoppingCartController(IProductCategoryService productCategogyService, IProductService productService, ApplicationUserManager userManager)
         {
             this._productCategogyService = productCategogyService;
             this._productService = productService;
+            this._userManager = userManager;
         }
 
            // GET: ShoppingCart
@@ -34,7 +38,24 @@ namespace TeduShop.Web.ClientsControllers
             ViewBag.listProductCategory = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
             return View();
         }
-        
+        public ActionResult GetUser()
+        {
+            if (Request.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+                var user = _userManager.FindByIdAsync(userId);
+                return Json(new
+                {
+                    data = user,
+                    status = true
+                });
+            }
+            return Json(new
+            {
+                status = false
+            });
+        }
+
         public JsonResult GetAll()
         {
             if (Session[CommonConstants.SessionCart] == null)

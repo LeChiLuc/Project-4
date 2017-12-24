@@ -3,12 +3,27 @@
     <div class="header_top">
         <div class="container">
             <div class="logo">
-                <a href="index.html"><img src="/Assets/images/logo.png" alt="" /></a>
+                <a href="/"><img src="/Assets/images/logo.png" alt="" /></a>
             </div>
             <ul class="shopping_grid">
-                <a href="#"><li>Đăng nhập</li></a>
-                <a href="dang-ky.html"><li>Đăng ký</li></a>
-                <a href="/gio-hang.html"><li><span class="m_1">Giỏ hàng</span>&nbsp;&nbsp;(0) &nbsp;<img src="/Assets//Assets//Assets//Assets/images/bag.png" alt="" /></li></a>
+                @using (Html.BeginForm("LogOut", "Account", FormMethod.Post))
+                {
+                    if (Request.IsAuthenticated)
+                    {
+
+                        @Html.AntiForgeryToken()
+                        <a href="/tai-khoan.html"><li>Xin chào: @User.Identity.Name</li></a>
+                        <li><button type="submit" class="btn btn-defaul">Thoát</button></li>
+
+
+                    }
+                    else
+                    {
+                        <a href="/dang-nhap.html"><li>Đăng nhập</li></a>
+                        <a href="/dang-ky.html"><li>Đăng ký</li></a>
+                    }
+                }
+                <a href="/gio-hang.html"><li><span class="m_1">Giỏ hàng</span>&nbsp;&nbsp;(0) &nbsp;<img src="/Assets/images/bag.png" alt="" /></li></a>
                 <div class="clearfix"> </div>
             </ul>
             <div class="clearfix"> </div>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TeduShop.Common
 {
-   public class MailHelper
+    public class MailHelper
     {
         public static bool SendMail(string toEmail, string subject, string content)
         {
@@ -46,7 +46,7 @@ namespace TeduShop.Common
             }
             catch (SmtpException smex)
             {
-               
+
                 return false;
             }
         }
