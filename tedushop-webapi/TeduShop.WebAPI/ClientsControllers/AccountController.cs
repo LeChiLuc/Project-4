@@ -1,4 +1,4 @@
-﻿using BotDetect.Web.Mvc;
+﻿
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -65,7 +65,6 @@ namespace TeduShop.Web.ClientsControllers
             return View();
         }
         [HttpPost]
-        [CaptchaValidation("CaptchaCode", "registerCaptcha", "Mã xác nhận không đúng")]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
