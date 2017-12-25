@@ -4,7 +4,7 @@
         cart.registerEvent();
     },
     registerEvent: function () {
-        
+
         $('.btnDeleteItem').off('click').on('click', function (e) {
             e.preventDefault();
             var productId = parseInt($(this).data('id'));
@@ -38,10 +38,18 @@
             $('#divCheckout').toggle();
         });
         $('#chkUserLoginInfo').off('click').on('click', function () {
-            cart.getLoginUser();
+            if ($(this).prop('checked')) {
+                cart.getLoginUser();
+            }
+            else {
+                $('#txtName').val('');
+                $('#txtAddress').val('');
+                $('#txtEmail').val('');
+                $('#txtPhone').val('');
+            }
         });
     },
-    getLoginUser: function(){
+    getLoginUser: function () {
         $.ajax({
             url: '/ShoppingCart/GetUser',
             type: 'POST',
@@ -50,9 +58,9 @@
                 if (response.status) {
                     var user = response.data;
                     $('#txtName').val(user.FullName);
-                    $('#txtName').val(user.Address);
-                    $('#txtName').val(user.Email);
-                    $('#txtName').val(user.PhoneNumber);
+                    $('#txtAddress').val(user.Address);
+                    $('#txtEmail').val(user.Email);
+                    $('#txtPhone').val(user.PhoneNumber);
                 }
             }
         });
@@ -79,7 +87,7 @@
                         });
                     });
                     $('#cartBody').html(html);
-                    if(html==''){
+                    if (html == '') {
                         $('#cartContent').html('Không có sản phẩm nào trong giỏ hàng');
                     }
                     $('#lblTotalOrder').text(dolor + cart.getTotalOrder());
@@ -88,7 +96,7 @@
             }
         });
     },
-    getTotalOrder: function(){
+    getTotalOrder: function () {
         var listTextBox = $('.txtQuantity');
         var total = 0;
         $.each(listTextBox, function (i, item) {
@@ -113,7 +121,7 @@
     },
     UpdateAll: function () {
         cartList = [];
-        $.each($('.txtQuantity'), function (i,item) {
+        $.each($('.txtQuantity'), function (i, item) {
             cartList.push({
                 ProductId: $(item).data('id'),
                 Quantity: $(item).val()
@@ -122,7 +130,7 @@
         $.ajax({
             url: '/ShoppingCart/Update',
             type: 'POST',
-            data:{
+            data: {
                 cartData: JSON.stringify(cartList)
             },
             dataType: 'json',

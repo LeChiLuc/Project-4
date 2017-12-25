@@ -11,6 +11,7 @@ using TeduShop.Service;
 using TeduShop.Web.App_Start;
 using TeduShop.Web.Models;
 using Microsoft.AspNet.Identity;
+using TeduShop.Web.Infrastructure.Extensions;
 
 namespace TeduShop.Web.ClientsControllers
 {
@@ -18,12 +19,14 @@ namespace TeduShop.Web.ClientsControllers
     {
         IProductCategoryService _productCategogyService;
         IProductService _productService;
+        IOrderService _orderService;
         ApplicationUserManager _userManager;
 
-        public ShoppingCartController(IProductCategoryService productCategogyService, IProductService productService, ApplicationUserManager userManager)
+        public ShoppingCartController(IProductCategoryService productCategogyService,IOrderService orderService, IProductService productService, ApplicationUserManager userManager)
         {
             this._productCategogyService = productCategogyService;
             this._productService = productService;
+            this._orderService = orderService;
             this._userManager = userManager;
         }
 
@@ -43,13 +46,25 @@ namespace TeduShop.Web.ClientsControllers
             if (Request.IsAuthenticated)
             {
                 var userId = User.Identity.GetUserId();
-                var user = _userManager.FindByIdAsync(userId);
+                var user = _userManager.FindById(userId);
                 return Json(new
                 {
                     data = user,
                     status = true
                 });
             }
+            return Json(new
+            {
+                status = false
+            });
+        }
+
+        public ActionResult CreateOrder(string orderViewModel)
+        {
+            var order = new JavaScriptSerializer().Deserialize<OrderViewModel>(orderViewModel);
+            var orderNew = new Order();
+            orderNew.UpdateOrder(order);
+            _orderService.CreateOrder(orderNew);
             return Json(new
             {
                 status = false
