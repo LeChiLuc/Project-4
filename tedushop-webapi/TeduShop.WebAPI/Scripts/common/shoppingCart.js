@@ -80,7 +80,7 @@
             }
         });
     },
-    getLoginUser: function(){
+    getLoginUser: function () {
         $.ajax({
             url: '/ShoppingCart/GetUser',
             type: 'POST',
@@ -147,7 +147,7 @@
                         });
                     });
                     $('#cartBody').html(html);
-                    if(html==''){
+                    if (html == '') {
                         $('#cartContent').html('Không có sản phẩm nào trong giỏ hàng');
                     }
                     $('#lblTotalOrder').text(dolor + cart.getTotalOrder());
@@ -156,7 +156,7 @@
             }
         });
     },
-    getTotalOrder: function(){
+    getTotalOrder: function () {
         var listTextBox = $('.txtQuantity');
         var total = 0;
         $.each(listTextBox, function (i, item) {
@@ -166,7 +166,7 @@
     },
     UpdateAll: function () {
         cartList = [];
-        $.each($('.txtQuantity'), function (i,item) {
+        $.each($('.txtQuantity'), function (i, item) {
             cartList.push({
                 ProductId: $(item).data('id'),
                 Quantity: $(item).val()
@@ -175,7 +175,7 @@
         $.ajax({
             url: '/ShoppingCart/Update',
             type: 'POST',
-            data:{
+            data: {
                 cartData: JSON.stringify(cartList)
             },
             dataType: 'json',

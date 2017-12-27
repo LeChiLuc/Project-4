@@ -26,6 +26,7 @@ namespace TeduShop.Web.ClientsControllers
         {
             this._productCategogyService = productCategogyService;
             this._productService = productService;
+            this._orderService = orderService;
             this._userManager = userManager;
             this._orderService = orderService;
         }
@@ -86,6 +87,18 @@ namespace TeduShop.Web.ClientsControllers
             return Json(new
             {
                 status = true
+            });
+        }
+
+        public ActionResult CreateOrder(string orderViewModel)
+        {
+            var order = new JavaScriptSerializer().Deserialize<OrderViewModel>(orderViewModel);
+            var orderNew = new Order();
+            orderNew.UpdateOrder(order);
+            _orderService.CreateOrder(orderNew);
+            return Json(new
+            {
+                status = false
             });
         }
 

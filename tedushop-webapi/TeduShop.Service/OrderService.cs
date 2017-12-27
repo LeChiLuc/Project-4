@@ -20,6 +20,8 @@ namespace TeduShop.Service
 
         OrderDetail CreateDetail(OrderDetail order);
 
+        bool CreateOrder(Order order);
+
         Order Delete(int id);
 
         void DeleteDetail(int productId, int orderId, int colorId, int sizeId);
@@ -53,6 +55,27 @@ namespace TeduShop.Service
                 return order;
             }
             catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public bool CreateOrder(Order order)
+        {
+            try
+            {
+                _orderRepository.Add(order);
+                _unitOfWork.Commit();
+
+                foreach (var orderDetail in order.OrderDetails)
+                {
+                    orderDetail.OrderID = order.ID;
+                    _orderDetailRepository.Add(orderDetail);
+                }
+                _unitOfWork.Commit();
+
+                return true;
+            }catch(Exception ex)
             {
                 throw;
             }
