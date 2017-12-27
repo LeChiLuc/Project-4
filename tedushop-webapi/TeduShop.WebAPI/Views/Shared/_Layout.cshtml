@@ -86,9 +86,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
  
     @{ Html.RenderAction("Footer", "Home");}
     <!--Script-->
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/additional-methods.min.js"></script>
     <script src="~/Scripts/mustache.min.js"></script>
-    <script src="~/Scripts/common/shoppingCart.js"></script>
     <script src="~/Scripts/common/common.js"></script>
-    
+    @RenderSection("jsFooter", required: false)
 </body>
 </html>		

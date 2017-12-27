@@ -4,7 +4,32 @@
         cart.registerEvent();
     },
     registerEvent: function () {
-        
+        $('#frmPayment').validate({
+            rules: {
+                name: "required",
+                address: "required",
+                email: {
+                    required: true,
+                    email: true
+                },
+                phone: {
+                    required: true,
+                    number: true
+                }
+            },
+            messages: {
+                name: "Yêu cầu nhập tên",
+                address: "Yêu cầu nhập địa chỉ",
+                email: {
+                    required: "Bạn cần nhập email",
+                    email: "Định dạng email chưa đúng"
+                },
+                phone: {
+                    required: "Số điện thoại được yêu cầu",
+                    number: "Số điện thoại phải là số"
+                }
+            }
+        });
         $('.btnDeleteItem').off('click').on('click', function (e) {
             e.preventDefault();
             var productId = parseInt($(this).data('id'));
@@ -38,7 +63,21 @@
             $('#divCheckout').toggle();
         });
         $('#chkUserLoginInfo').off('click').on('click', function () {
-            cart.getLoginUser();
+            if ($(this).prop('checked')) {
+                cart.getLoginUser();
+            }
+            else {
+                $('#txtName').val('');
+                $('#txtAddress').val('');
+                $('#txtEmail').val('');
+                $('#txtPhone').val('');
+            }
+        });
+        $('#btnCreateOrder').off('click').on('click', function () {           
+            var isvalid = $('#frmPayment').valid();
+            if (isvalid) {
+                cart.createOrder();
+            }
         });
     },
     getLoginUser: function(){
@@ -50,9 +89,38 @@
                 if (response.status) {
                     var user = response.data;
                     $('#txtName').val(user.FullName);
-                    $('#txtName').val(user.Address);
-                    $('#txtName').val(user.Email);
-                    $('#txtName').val(user.PhoneNumber);
+                    $('#txtAddress').val(user.Address);
+                    $('#txtEmail').val(user.Email);
+                    $('#txtPhone').val(user.PhoneNumber);
+                }
+            }
+        });
+    },
+    createOrder: function () {
+        var order ={
+            CustomerName : $('#txtName').val(),
+            CustomerAddress : $('#txtAddress').val(),
+            CustomerEmail : $('#txtEmail').val(),
+            CustomerMobile : $('#txtPhone').val(),
+            CustomerMessage : $('#txtMessage').val(),
+            PaymentMethod : "Thanh toán tiền mặt",
+            Status : false
+        }
+        $.ajax({
+            url: '/ShoppingCart/CreateOrder',
+            type: 'POST',
+            data: {
+                orderViewModel: JSON.stringify(order)
+            },
+            dataType: 'json',
+            success: function (response) {
+                if (response.status) {
+                    console.log('Create Order OK');
+                    $('#divCheckout').hide();
+                    cart.DeleteAll();
+                    setTimeout(function () {
+                        $('#cartContent').html('Cảm ơn bạn đã đặt hàng thành công. Chúng tôi sẽ liên hệ với bạn sớm nhất.');
+                    },2000);                    
                 }
             }
         });
@@ -95,21 +163,6 @@
             total += parseInt($(item).val()) * parseFloat($(item).data('price'));;
         });
         return total;
-    },
-    addItem: function (productId) {
-        $.ajax({
-            url: '/ShoppingCart/Add',
-            data: {
-                productId: productId
-            },
-            type: 'POST',
-            dataType: 'json',
-            success: function (response) {
-                if (response.status) {
-                    alert('Thêm sản phẩm thành công.');
-                }
-            }
-        });
     },
     UpdateAll: function () {
         cartList = [];

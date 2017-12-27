@@ -11,6 +11,8 @@ namespace TeduShop.Service
     public interface IOrderService
     {
         Order Create(Order order);
+        Order CreateOrderClient(Order order, List<OrderDetail> orderDetails);
+
         List<Order> GetList(string startDate, string endDate, string customerName, string status,
             int pageIndex, int pageSize, out int totalRow);
 
@@ -114,6 +116,29 @@ namespace TeduShop.Service
         public Order Delete(int id)
         {
             return _orderRepository.Delete(id);
+        }
+
+        public Order CreateOrderClient(Order order, List<OrderDetail> orderDetails)
+        {
+            try
+            {
+                _orderRepository.Add(order);
+                _unitOfWork.Commit();
+
+                foreach (var orderDetail in orderDetails)
+                {
+                    orderDetail.OrderID = order.ID;
+                    orderDetail.ColorId = 2;
+                    orderDetail.SizeId = 1;
+                    _orderDetailRepository.Add(orderDetail);
+                }
+                _unitOfWork.Commit();
+                return order;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }

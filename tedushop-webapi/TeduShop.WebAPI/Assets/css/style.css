@@ -1385,10 +1385,10 @@ p.comment-form-author {
 	margin-bottom: 2em;
 }
 .contact-form label {
-	display: block;
-	font-size: 0.8125em;
-	color: #000;
-	text-transform: uppercase;
+    display: block;
+    font-size: 0.8125em;
+    color: #ef5a5a;
+    text-transform: uppercase;
 }
 .contact-form input[type="text"] {
 	padding: 10px;

@@ -4,6 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     var listCategories = (IEnumerable<TeduShop.Web.Models.ProductCategoryViewModel>)ViewBag.listProductCategory;
 }
+@section jsFooter{
+<script src="~/Scripts/common/shoppingCart.js"></script>
+}
 
 @section productCategory{
     <div class="col-md-3 sidebar_box">
@@ -117,7 +120,7 @@
             </div>
             <div class="contact-form" id="divCheckout" style="display: none">
                 <h3>Thanh toán</h3>
-                <form method="post" action="contact-post.html">
+                <form method="post" id="frmPayment">
                    @if (Request.IsAuthenticated)
                    {
                     <label>
@@ -125,21 +128,21 @@
                     </label>
                    }
                     <p class="comment-form-author">
-                        <input type="text" class="textbox" id="txtName" placeholder="Họ tên">
+                        <input type="text" class="textbox" id="txtName" name="name" placeholder="Họ tên">
                     </p>
                     <p class="comment-form-author">
-                        <input type="text" class="textbox" id="txtAddress" placeholder="Địa chỉ">
+                        <input type="text" class="textbox" id="txtAddress" name="address" placeholder="Địa chỉ">
                     </p>
                     <p class="comment-form-author">
-                        <input type="text" class="textbox" id="txtEmail" placeholder="Email">
+                        <input type="text" class="textbox" id="txtEmail" name="email" placeholder="Email">
                     </p>
                     <p class="comment-form-author">
-                        <input type="text" class="textbox" id="txtPhone" placeholder="Điện thoại">
+                        <input type="text" class="textbox" id="txtPhone" name="phone" placeholder="Điện thoại">
                     </p>
                     <p class="comment-form-author">
-                        <textarea value="" placeholder="Ghi chú" id="txtMessage"></textarea>
+                        <textarea value="" placeholder="Ghi chú" name="message" id="txtMessage"></textarea>
                     </p>
-                    <input type="submit" id="submit" value="Thanh toán">
+                    <input type="button" id="btnCreateOrder" value="Thanh toán">
                 </form>
             </div>
         </div>

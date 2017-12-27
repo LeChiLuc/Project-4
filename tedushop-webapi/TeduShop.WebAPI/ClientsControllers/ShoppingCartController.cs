@@ -11,6 +11,7 @@ using TeduShop.Service;
 using TeduShop.Web.App_Start;
 using TeduShop.Web.Models;
 using Microsoft.AspNet.Identity;
+using TeduShop.Web.Infrastructure.Extensions;
 
 namespace TeduShop.Web.ClientsControllers
 {
@@ -18,13 +19,15 @@ namespace TeduShop.Web.ClientsControllers
     {
         IProductCategoryService _productCategogyService;
         IProductService _productService;
+        IOrderService _orderService;
         ApplicationUserManager _userManager;
 
-        public ShoppingCartController(IProductCategoryService productCategogyService, IProductService productService, ApplicationUserManager userManager)
+        public ShoppingCartController(IProductCategoryService productCategogyService,IOrderService orderService, IProductService productService, ApplicationUserManager userManager)
         {
             this._productCategogyService = productCategogyService;
             this._productService = productService;
             this._userManager = userManager;
+            this._orderService = orderService;
         }
 
            // GET: ShoppingCart
@@ -43,7 +46,7 @@ namespace TeduShop.Web.ClientsControllers
             if (Request.IsAuthenticated)
             {
                 var userId = User.Identity.GetUserId();
-                var user = _userManager.FindByIdAsync(userId);
+                var user = _userManager.FindById(userId);
                 return Json(new
                 {
                     data = user,
@@ -53,6 +56,36 @@ namespace TeduShop.Web.ClientsControllers
             return Json(new
             {
                 status = false
+            });
+        }
+        public ActionResult CreateOrder(string orderViewModel)
+        {
+            var order = new JavaScriptSerializer().Deserialize<OrderViewModel>(orderViewModel);
+
+            var orderNew = new Order();
+
+            orderNew.UpdateOrder(order);
+
+            if (Request.IsAuthenticated)
+            {
+                orderNew.CustomerId = User.Identity.GetUserId();
+                orderNew.CreatedBy = User.Identity.GetUserName();
+            }
+
+            var cart = (List<ShoppingCartViewModel>)Session[CommonConstants.SessionCart];
+            List<OrderDetail> orderDetails = new List<OrderDetail>();
+            foreach (var item in cart)
+            {
+                var detail = new OrderDetail();
+                detail.ProductID = item.ProductId;
+                detail.Quantity = item.Quantity;
+                detail.Price = item.Product.Price;
+                orderDetails.Add(detail);
+            }
+            _orderService.CreateOrderClient(orderNew, orderDetails);
+            return Json(new
+            {
+                status = true
             });
         }
 
