@@ -90,17 +90,6 @@ namespace TeduShop.Web.ClientsControllers
             });
         }
 
-        public ActionResult CreateOrder(string orderViewModel)
-        {
-            var order = new JavaScriptSerializer().Deserialize<OrderViewModel>(orderViewModel);
-            var orderNew = new Order();
-            orderNew.UpdateOrder(order);
-            _orderService.CreateOrder(orderNew);
-            return Json(new
-            {
-                status = false
-            });
-        }
 
         public JsonResult GetAll()
         {
