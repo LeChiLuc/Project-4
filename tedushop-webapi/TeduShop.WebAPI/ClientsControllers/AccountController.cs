@@ -107,7 +107,7 @@ namespace TeduShop.Web.ClientsControllers
 
                 var adminEmail = ConfigHelper.GetByKey("AdminEmail");
                 MailHelper.SendMail(adminEmail, "Thông tin liên hệ từ website", content);
-                //MailHelper.SendMail(adminUser.Email, "Đăng ký thành công", content);
+                MailHelper.SendMail(adminUser.Email, "Đăng ký thành công", content);
 
 
                 ViewData["Successmsg"] = "đăng ký thành công"; //ViewData redirect mất giá trị, TempData redirect không mất giá trị

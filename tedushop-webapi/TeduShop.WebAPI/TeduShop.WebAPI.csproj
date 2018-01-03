@@ -422,6 +422,7 @@
     <Content Include="Assets\fonts\fontawesome-webfont.woff" />
     <Content Include="Assets\fonts\fontawesome-webfont.woff2" />
     <Content Include="Assets\fonts\FontAwesome.otf" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\additional-methods.min.js" />
     <Content Include="Scripts\common\common.js" />
@@ -434,6 +435,43 @@
     <Content Include="Scripts\mustache.min.js" />
     <Content Include="Templates\NewUser.html" />
     <Content Include="Templates\product-detail.html" />
+    <Content Include="UploadedFiles\Avatars\b3.jpg" />
+    <Content Include="UploadedFiles\Avatars\c1.jpg" />
+    <Content Include="UploadedFiles\Avatars\image001.png" />
+    <Content Include="UploadedFiles\Avatars\ms.PNG" />
+    <Content Include="UploadedFiles\img.jpg" />
+    <Content Include="UploadedFiles\MyFamily.jpg" />
+    <Content Include="UploadedFiles\Products\25105514_10208537124745146_1872884482_n.png" />
+    <Content Include="UploadedFiles\Products\bD8caG.jpg" />
+    <Content Include="UploadedFiles\Products\funny-laugh-pitbull-puppy-wallpaper-624311347.jpg" />
+    <Content Include="UploadedFiles\Products\husky_puppies_couple_leisure_52671_1920x1080.jpg" />
+    <Content Include="UploadedFiles\Products\LV719-bo-vest-da-3-290x417.jpg" />
+    <Content Include="UploadedFiles\Products\LV719-bo-vest-da-9-290x417.jpg" />
+    <Content Include="UploadedFiles\Products\LV721-Bo-vest-nu-tay-lung-1-2-290x417.jpg" />
+    <Content Include="UploadedFiles\Products\LV721-Bo-vest-nu-tay-lung-1-3-290x417.jpg" />
+    <Content Include="UploadedFiles\Products\LV721-Bo-vest-nu-tay-lung-1.jpg" />
+    <Content Include="UploadedFiles\Products\LV721-Bo-vest-nu-tay-lung-4-1.jpg" />
+    <Content Include="UploadedFiles\Products\LV721-Bo-vest-tay-lung-1-290x417.jpg" />
+    <Content Include="UploadedFiles\Products\MT61-ao-mang-to-da-dang-dai-1-290x417.jpg" />
+    <Content Include="UploadedFiles\Products\MT61C-ao-mang-to-da-dang-dai-2-290x417.jpg" />
+    <Content Include="UploadedFiles\Products\MT61DO-Ao-mang-to-da-dang-dai-1-290x417.jpg" />
+    <Content Include="UploadedFiles\Products\MT62B-Ao-mang-to-da-dang-suong-6-290x417.jpg" />
+    <Content Include="UploadedFiles\Products\MT62C-ao-mang-to-da-dang-suong-2-290x417.jpg" />
+    <Content Include="UploadedFiles\Products\MT62K-ao-mang-to-da-dang-suong-2-290x417.jpg" />
+    <Content Include="UploadedFiles\Products\MT65-ao-mang-to-da-co-long-1-290x417.jpg" />
+    <Content Include="UploadedFiles\Products\mt65c-ao-da-co-long-cam-290x417.jpg" />
+    <Content Include="UploadedFiles\Products\MT66-ao-khoac-da-dang-dai-15-290x417.jpg" />
+    <Content Include="UploadedFiles\Products\MT66-ao-khoac-da-dang-dai-2-290x417.jpg" />
+    <Content Include="UploadedFiles\Products\MT66-ao-khoac-da-dang-dai-6-290x417.jpg" />
+    <Content Include="UploadedFiles\Products\MT66-ao-khoac-da-dang-dai-9-290x417.jpg" />
+    <Content Include="UploadedFiles\Products\MT67K-ao-mang-to-da-dang-suong-1-290x417.jpg" />
+    <Content Include="UploadedFiles\Products\MT68B-Ao-mang-to-da-that-dai-eo-2-290x417.jpg" />
+    <Content Include="UploadedFiles\Products\MT68C-ao-da-mang-to-dang-dai-4-290x417.jpg" />
+    <Content Include="UploadedFiles\Products\MT70-Ao-khoac-gile-2-290x417.jpg" />
+    <Content Include="UploadedFiles\Products\MT70-ao-khoac-gile-5-290x417.jpg" />
+    <Content Include="UploadedFiles\Products\MT70-Ao-vest-dang-dai-kieu-gile-2-290x417.jpg" />
+    <Content Include="UploadedFiles\Products\MyFamily.jpg" />
+    <Content Include="UploadedFiles\Products\pitbull-puppy-wallpapers.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -457,7 +495,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Reports\" />
-    <Folder Include="UploadedFiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
