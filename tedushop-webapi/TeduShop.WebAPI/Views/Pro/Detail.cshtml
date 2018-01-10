@@ -125,23 +125,23 @@
                 <div class="price_single">
                     @if (Model.PromotionPrice.HasValue)
                     {
-                        <span class="reducedfrom">$@Model.Price.ToString("N0")</span>
-                        <span class="actual">$@Model.PromotionPrice.Value.ToString("N0")</span>
+                        <span class="reducedfrom">@Model.Price.ToString("N0") VNĐ</span>
+                        <span class="actual">@Model.PromotionPrice.Value.ToString("N0") VNĐ</span>
                     }
                     else
                     {
-                        <span class="reducedfrom" style="text-decoration:none">$@Model.Price.ToString("N0")</span>
+                        <span class="reducedfrom" style="text-decoration:none">@Model.Price.ToString("N0") VNĐ</span>
                     }
 
                 </div>
                 <h2 class="quick">Tổng quan:</h2>
                 <p class="quick_desc">@Model.Description</p>
-                <ul class="size">
+                @*<ul class="size">
                     <h3>Cỡ:</h3>
                     <li><a href="#">32</a></li>
                     <li><a href="#">34</a></li>
-                </ul>
-                <div class="quantity_box">
+                </ul>*@
+                @*<div class="quantity_box">
                     <ul class="product-qty">
                         <span>Quantity:</span>
                         <select>
@@ -160,8 +160,8 @@
                         <li><a href="#"><i class="linked"> </i> </a></li>
                     </ul>
                     <div class="clearfix"></div>
-                </div>
-                <a href="/gio-hang.html" title="Online Reservation" class="btn bt1 btn-primary btn-normal btn-inline btnAddToCart" target="_self" data-id="@Model.ID">Thêm vào giỏ hàng</a>
+                </div>*@
+                <a href="/gio-hang.html" title="Online Reservation" class="btn bt1 btn-primary btn-normal btn-inline btnAddToCartDetail" target="_self" data-id="@Model.ID">Thêm vào giỏ hàng</a>
             </div>
             <div class="clearfix"> </div>
         </div>
@@ -204,7 +204,7 @@
         </div>
     </div>
     <h3 class="single_head">Sản phẩm liên quan</h3>
-    <div class="related_products">
+    <div class="related_products top_grid2">
         @foreach (var product in listRelatedProducts)
         {
             <div class="col-md-4 top_grid1-box1 top_grid2-box2" style="margin-bottom:25px;">
@@ -216,7 +216,7 @@
                         <div class="grid_2">
                             <p>@product.Name</p>
                             <ul class="grid_2-bottom">
-                                <li class="grid_2-left"><p>$@product.Price.ToString("N0")</p></li>
+                                <li class="grid_2-left"><p>@product.Price.ToString("N0") VNĐ</p></li>
                                 <li class="grid_2-right"><a href="/@(product.Alias).p-@(product.ID).html" title="Get It" class="btn btn-primary btn-normal btn-inline btnAddToCart" target="_self" data-id="@product.ID">Thêm</a></li>
                                 <div class="clearfix"> </div>
                             </ul>

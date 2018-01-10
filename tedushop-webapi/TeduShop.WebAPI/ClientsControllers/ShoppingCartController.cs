@@ -12,6 +12,7 @@ using TeduShop.Web.App_Start;
 using TeduShop.Web.Models;
 using Microsoft.AspNet.Identity;
 using TeduShop.Web.Infrastructure.Extensions;
+using TeduShop.Web.Infrastructure.NganLuongAPI;
 
 namespace TeduShop.Web.ClientsControllers
 {
@@ -22,7 +23,11 @@ namespace TeduShop.Web.ClientsControllers
         IOrderService _orderService;
         ApplicationUserManager _userManager;
 
-        public ShoppingCartController(IProductCategoryService productCategogyService,IOrderService orderService, IProductService productService, ApplicationUserManager userManager)
+        private string merchantId = ConfigHelper.GetByKey("MerchantId");
+        private string merchantPassword = ConfigHelper.GetByKey("MerchantPassword");
+        private string merchantEmail = ConfigHelper.GetByKey("MerchantEmail");
+
+        public ShoppingCartController(IProductCategoryService productCategogyService, IOrderService orderService, IProductService productService, ApplicationUserManager userManager)
         {
             this._productCategogyService = productCategogyService;
             this._productService = productService;
@@ -31,7 +36,7 @@ namespace TeduShop.Web.ClientsControllers
             this._orderService = orderService;
         }
 
-           // GET: ShoppingCart
+        // GET: ShoppingCart
         public ActionResult Index()
         {
             if (Session[CommonConstants.SessionCart] == null)
@@ -83,13 +88,91 @@ namespace TeduShop.Web.ClientsControllers
                 detail.Price = item.Product.Price;
                 orderDetails.Add(detail);
             }
-            _orderService.CreateOrderClient(orderNew, orderDetails);
-            return Json(new
+            var orderReturn = _orderService.CreateOrderClient(orderNew, orderDetails);
+            if (order.PaymentMethod == "CASH")
             {
-                status = true
-            });
+                return Json(new
+                {
+                    status = true
+                });
+            }
+            else
+            {
+               
+                var currentLink = ConfigHelper.GetByKey("CurrentLink");
+
+                RequestInfo info = new RequestInfo();
+                info.Merchant_id = merchantId;
+                info.Merchant_password = merchantPassword;
+                info.Receiver_email = merchantEmail;
+
+
+
+                info.cur_code = "vnd";
+                info.bank_code = order.BankCode;
+
+                info.Order_code = orderReturn.ID.ToString();
+                info.Total_amount = orderDetails.Sum(x => x.Quantity * x.Price).ToString();
+                info.fee_shipping = "0";
+                info.Discount_amount = "0";
+                info.order_description = "Thanh toán đơn hàng tại OnlineHubt";
+                info.return_url = currentLink + "xac-nhan-don-hang.html";
+                info.cancel_url = currentLink + "huy-don-hang.html";
+
+                info.Buyer_fullname = order.CustomerName;
+                info.Buyer_email = order.CustomerEmail;
+                info.Buyer_mobile = order.CustomerMobile;
+
+                APICheckoutV3 objNLChecout = new APICheckoutV3();
+                ResponseInfo result = objNLChecout.GetUrlCheckout(info, order.PaymentMethod);
+
+                if (result.Error_code == "00")
+                {
+                    return Json(new
+                    {
+                        status = true,
+                        urlCheckout = result.Checkout_url,
+                        message = result.Description
+                    });
+                }
+                else
+                    return Json(new
+                    {
+                        status = false,
+                        message = result.Description
+                    });
+
+            }
         }
 
+        public ActionResult ComfirmOrder()
+        {
+            string token = Request["token"];
+            RequestCheckOrder info = new RequestCheckOrder();
+            info.Merchant_id = merchantId;
+            info.Merchant_password = merchantPassword;
+            info.Token = token;
+            APICheckoutV3 objNLChecout = new APICheckoutV3();
+            ResponseCheckOrder result = objNLChecout.GetTransactionDetail(info);
+            if(result.errorCode == "00")
+            {
+                //update status order
+                _orderService.UpdateStatus(int.Parse(result.order_code));
+                _orderService.Save();
+                ViewBag.IsSuccess = true;
+                ViewBag.Result = "Thanh toán thành công. Chúng tôi sẽ liên hệ lại sớm nhất.";
+            }
+            else
+            {
+                ViewBag.IsSuccess = false;
+                ViewBag.Result = "Có lỗi xảy ra. Vui lòng liên hệ admin";
+            }
+            return View();
+        }
+        public ActionResult CancelOrder()
+        {
+            return View();
+        }
 
         public JsonResult GetAll()
         {
@@ -99,7 +182,7 @@ namespace TeduShop.Web.ClientsControllers
             return Json(new
             {
                 data = cart,
-                status =true
+                status = true
             }, JsonRequestBehavior.AllowGet);
         }
 
@@ -111,11 +194,11 @@ namespace TeduShop.Web.ClientsControllers
             {
                 cart = new List<ShoppingCartViewModel>();
             }
-            if (cart.Any(x=>x.ProductId == productId))
+            if (cart.Any(x => x.ProductId == productId))
             {
-                foreach(var item in cart)
+                foreach (var item in cart)
                 {
-                    if(item.ProductId == productId)
+                    if (item.ProductId == productId)
                     {
                         item.Quantity += 1;
                     }
@@ -131,9 +214,11 @@ namespace TeduShop.Web.ClientsControllers
                 cart.Add(newItem);
             }
             Session[CommonConstants.SessionCart] = cart;
+            
             return Json(new
             {
-                status =true
+                status = true,
+                count = cart
             });
         }
 
@@ -143,11 +228,11 @@ namespace TeduShop.Web.ClientsControllers
             var cartViewModel = new JavaScriptSerializer().Deserialize<List<ShoppingCartViewModel>>(cartData);
 
             var cartSession = (List<ShoppingCartViewModel>)Session[CommonConstants.SessionCart];
-            foreach(var item in cartSession)
+            foreach (var item in cartSession)
             {
-                foreach(var jitem in cartViewModel)
+                foreach (var jitem in cartViewModel)
                 {
-                    if(item.ProductId == jitem.ProductId)
+                    if (item.ProductId == jitem.ProductId)
                     {
                         item.Quantity = jitem.Quantity;
                     }
@@ -156,7 +241,7 @@ namespace TeduShop.Web.ClientsControllers
             Session[CommonConstants.SessionCart] = cartSession;
             return Json(new
             {
-                status =true
+                status = true
             });
         }
         [HttpPost]

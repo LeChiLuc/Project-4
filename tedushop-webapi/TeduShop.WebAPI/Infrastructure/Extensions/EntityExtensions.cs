@@ -126,7 +126,6 @@ namespace TeduShop.Web.Infrastructure.Extensions
             order.CreatedBy = orderVm.CreatedBy;
             order.PaymentStatus = orderVm.PaymentStatus;
             order.Status = orderVm.Status;
-            order.OrderDetails = AutoMapper.Mapper.Map<ICollection<OrderDetailViewModel>, ICollection<OrderDetail>>(orderVm.OrderDetails);
             order.CustomerId = orderVm.CustomerId;
         }
 

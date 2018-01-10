@@ -327,6 +327,7 @@
     <Compile Include="Infrastructure\Core\PaginationSet.cs" />
     <Compile Include="Infrastructure\Core\ServiceFactory.cs" />
     <Compile Include="Infrastructure\Extensions\EntityExtensions.cs" />
+    <Compile Include="Infrastructure\NganLuongAPI\APICheckoutV3.cs" />
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
     <Compile Include="Models\Common\AnnouncementUserViewModel.cs" />
     <Compile Include="Models\Common\AnnouncementViewModel.cs" />
@@ -376,6 +377,7 @@
     <Content Include="Assets\fonts\fontawesome-webfont.svg" />
     <Content Include="Assets\images\arrows.png" />
     <Content Include="Assets\images\bag.png" />
+    <Content Include="Assets\images\bank_logo.png" />
     <Content Include="Assets\images\banner1.jpg" />
     <Content Include="Assets\images\banner2.jpg" />
     <Content Include="Assets\images\banner3.jpg" />
@@ -492,6 +494,8 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\ShoppingCart\CancelOrder.cshtml" />
+    <Content Include="Views\ShoppingCart\ComfirmOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Reports\" />

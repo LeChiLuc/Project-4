@@ -1,4 +1,4 @@
-﻿
+﻿@model List<TeduShop.Web.Models.ShoppingCartViewModel>
 <div class="header">
     <div class="header_top">
         <div class="container">
@@ -23,7 +23,7 @@
                         <a href="/dang-ky.html"><li>Đăng ký</li></a>
                     }
                 }
-                <a href="/gio-hang.html"><li><span class="m_1">Giỏ hàng</span>&nbsp;&nbsp;(0) &nbsp;<img src="/Assets/images/bag.png" alt="" /></li></a>
+                <a href="/gio-hang.html"><li ><span class="m_1">Giỏ hàng</span>&nbsp;&nbsp;<span id="count-item" data-count="0">@Model.Count() Sản phẩm</span> &nbsp;<img src="/Assets/images/bag.png" alt="" id="cart-shop" /></li></a>
                 <div class="clearfix"> </div>
             </ul>
             <div class="clearfix"> </div>

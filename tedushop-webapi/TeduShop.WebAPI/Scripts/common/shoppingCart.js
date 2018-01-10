@@ -79,6 +79,19 @@
                 cart.createOrder();
             }
         });
+        $('input[name="paymentMethod"]').off('click').on('click', function () {
+            if ($(this).val() == 'NL') {
+                $('.boxContent').hide();
+                $('#nganluongContent').show();
+            }
+            else if ($(this).val() == 'ATM_ONLINE') {
+                $('.boxContent').hide();
+                $('#bankContent').show();
+            }
+            else {
+                $('.boxContent').hide();
+            }
+        });
     },
     getLoginUser: function () {
         $.ajax({
@@ -103,7 +116,8 @@
             CustomerEmail : $('#txtEmail').val(),
             CustomerMobile : $('#txtPhone').val(),
             CustomerMessage : $('#txtMessage').val(),
-            PaymentMethod : "Thanh toán tiền mặt",
+            PaymentMethod: $('input[name="paymentMethod"]:checked').val(),
+            BankCode: $('input[groupname="bankcode"]:checked').prop('id'),
             Status : false
         }
         $.ajax({
@@ -115,12 +129,21 @@
             dataType: 'json',
             success: function (response) {
                 if (response.status) {
-                    console.log('Create Order OK');
-                    $('#divCheckout').hide();
-                    cart.DeleteAll();
-                    setTimeout(function () {
-                        $('#cartContent').html('Cảm ơn bạn đã đặt hàng thành công. Chúng tôi sẽ liên hệ với bạn sớm nhất.');
-                    },2000);                    
+                    if (response.urlCheckout != undefined && response.urlCheckout != '') {
+                        window.location.href = response.urlCheckout;
+                    }
+                    else {
+                        console.log('Create Order OK');
+                        $('#divCheckout').hide();
+                        cart.DeleteAll();
+                        setTimeout(function () {
+                            $('#cartContent').html('Cảm ơn bạn đã đặt hàng thành công. Chúng tôi sẽ liên hệ với bạn sớm nhất.');
+                        }, 2000);
+                    }
+                }
+                else {
+                    $('#divMessage').show();
+                    $('#divMessage').text(response.message);
                 }
             }
         });
@@ -133,7 +156,7 @@
             success: function (res) {
                 if (res.status) {
                     var template = $('#tplCart').html();
-                    var dolor = '$';
+                    var dong = 'VNĐ';
                     var html = '';
                     var data = res.data;
                     $.each(res.data, function (i, item) {
@@ -150,7 +173,8 @@
                     if (html == '') {
                         $('#cartContent').html('Không có sản phẩm nào trong giỏ hàng');
                     }
-                    $('#lblTotalOrder').text(dolor + cart.getTotalOrder());
+                    $('#lblTotalOrder').text(cart.getTotalOrder() + ' ' + dong);
+                    $('#count-item').text(data.length + ' Sản phẩm');
                     cart.registerEvent();
                 }
             }

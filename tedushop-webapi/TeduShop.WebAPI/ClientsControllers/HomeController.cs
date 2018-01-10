@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TeduShop.Common;
 using TeduShop.Model.Models;
 using TeduShop.Service;
 using TeduShop.Web.Models;
@@ -45,7 +46,13 @@ namespace TeduShop.Web.ClientsControllers
         [ChildActionOnly]
         public ActionResult Header()
         {
-            return PartialView();
+            var cart = Session[CommonConstants.SessionCart];
+            var list = new List<ShoppingCartViewModel>();
+            if(cart != null)
+            {
+                list = (List<ShoppingCartViewModel>)cart;
+            }
+            return PartialView(list);
         }
         [ChildActionOnly]
         public ActionResult Search()
