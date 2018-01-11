@@ -388,6 +388,7 @@
     <Content Include="Assets\images\f_menu.png" />
     <Content Include="Assets\images\img-sprite.png" />
     <Content Include="Assets\images\logo.png" />
+    <Content Include="Assets\images\NOEL.jpg" />
     <Content Include="Assets\images\p1.jpg" />
     <Content Include="Assets\images\p10.jpg" />
     <Content Include="Assets\images\p11.jpg" />
@@ -408,6 +409,7 @@
     <Content Include="Assets\images\s4.jpg" />
     <Content Include="Assets\images\search.png" />
     <Content Include="Assets\images\tick1.png" />
+    <Content Include="Assets\images\timthumb.jpg" />
     <Content Include="Assets\images\wishlist.png" />
     <Content Include="Assets\js\easyResponsiveTabs.js" />
     <Content Include="Assets\js\hover_pack.js" />
