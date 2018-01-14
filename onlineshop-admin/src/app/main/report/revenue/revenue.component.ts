@@ -83,8 +83,8 @@ export class RevenueComponent implements OnInit {
         var benefit = { data: [], label: 'Lợi nhuận' };
         this.tableData = [];
         for (let item of response) {
-          revenue.data.push(item.Benefit);
-          benefit.data.push(item.Revenues);
+          revenue.data.push(item.Revenues);
+          benefit.data.push(item.Benefit);
           this.lineChartLabels.push(moment(item.Date).format('DD/MM/YYYY'));
           //push to table
           this.tableData = response;
