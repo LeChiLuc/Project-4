@@ -21,6 +21,7 @@
         protected override void Seed(TeduShop.Data.TeduShopDbContext context)
         {
             CreateProductCategorySample(context);
+            CreateProductSample(context);
             CreateSlide(context);
             CreatePage(context);
             CreateContactDetail(context);
@@ -32,7 +33,34 @@
             CreateColor(context);
             CreateFunction(context);
         }
+        private void CreateProductSample(TeduShop.Data.TeduShopDbContext context)
+        {
+            if (context.Products.Count() == 0)
+            {
+                List<Product> listProduct = new List<Product>()
+                {
+                    new Product() { Name="LV721 Bộ vest nữ trẻ trung màu rêu sang chảnh",Alias="LV721-Bo-vest-nu-tay-lung-4-1",CategoryID=2,ThumbnailImage="/UploadedFiles/Products/LV721-Bo-vest-nu-tay-lung-4-1.jpg",Price=1080000,OriginalPrice=1000000,PromotionPrice=1050000,IncludedVAT=true,Warranty=12,HomeFlag=true,HotFlag=true,CreatedDate=DateTime.Now,CreatedBy="admin",Status=true },
+                    new Product() { Name="LV721 Bộ vest nữ đẹp dáng tay lỡ",Alias="lv721-bo-vest-nu-dep-dang-tay-lo",CategoryID=2,ThumbnailImage="/UploadedFiles/Products/LV721-Bo-vest-nu-tay-lung-1.jpg",Price=1070000,OriginalPrice=1000000,PromotionPrice=1050000,IncludedVAT=true,Warranty=12,HomeFlag=true,HotFlag=true,CreatedDate=DateTime.Now,CreatedBy="admin",Status=true },
+                    new Product() { Name="LV721 Bộ vest tay lỡ đỏ nổi bật",Alias="lv721-bo-vest-tay-lo-noi-bat",CategoryID=2,ThumbnailImage="/UploadedFiles/Products/LV721-Bo-vest-nu-tay-lung-1-2-290x417.jpg",Price=1170000,OriginalPrice=1000000,PromotionPrice=1050000,IncludedVAT=true,Warranty=12,HomeFlag=true,HotFlag=true,CreatedDate=DateTime.Now,CreatedBy="admin",Status=true },
+                    new Product() { Name="LV721 Bộ vest công sở kiểu cách tân",Alias="lv721-bo-vest-cong-kieu-cach-tan",CategoryID=2,ThumbnailImage="/UploadedFiles/Products/LV721-Bo-vest-nu-tay-lung-1-3-290x417.jpg",Price=1270000,OriginalPrice=1000000,PromotionPrice=1050000,IncludedVAT=true,Warranty=12,HomeFlag=true,HotFlag=true,CreatedDate=DateTime.Now,CreatedBy="admin",Status=true },
+                    new Product() { Name="LV721 Bộ vest nữ đen tay lửng",Alias="lv721-bo-vest-nu-den-tay-lung",CategoryID=2,ThumbnailImage="/UploadedFiles/Products/LV721-Bo-vest-tay-lung-1-290x417.jpg",Price=1020000,OriginalPrice=1000000,PromotionPrice=1050000,IncludedVAT=true,Warranty=12,HomeFlag=true,HotFlag=true,CreatedDate=DateTime.Now,CreatedBy="admin",Status=true },
+                    new Product() { Name="MT66 Áo măng tô nữ dáng ôm đính cúc nổi",Alias="mt66-ao-mang-nu-dang-om-dinh-cuc-noi",CategoryID=2,ThumbnailImage="/UploadedFiles/Products/MT66-ao-khoac-da-dang-dai-6-290x417.jpg",Price=1090000,OriginalPrice=1000000,PromotionPrice=1050000,IncludedVAT=true,Warranty=12,HomeFlag=true,HotFlag=true,CreatedDate=DateTime.Now,CreatedBy="admin",Status=true },
+                    new Product() { Name="MT66 Áo măng tô cao cấp dáng ôm",Alias="mt66-ao-mang-cao-cap-dang-om",CategoryID=2,ThumbnailImage="/UploadedFiles/Products/MT66-ao-khoac-da-dang-dai-15-290x417.jpg",Price=1020000,OriginalPrice=1000000,PromotionPrice=1050000,IncludedVAT=true,Warranty=12,HomeFlag=true,HotFlag=true,CreatedDate=DateTime.Now,CreatedBy="admin",Status=true },
+                    new Product() { Name="MT66 Áo khoác dạ nữ cổ xếp",Alias="mt66-ao-khoac-da-nu-co-xep",CategoryID=2,ThumbnailImage="/UploadedFiles/Products/MT66-ao-khoac-da-dang-dai-9-290x417.jpg",Price=1020000,OriginalPrice=1000000,PromotionPrice=1050000,IncludedVAT=true,Warranty=12,HomeFlag=true,HotFlag=true,CreatedDate=DateTime.Now,CreatedBy="admin",Status=true },
+                    new Product() { Name="MT66 Áo khoác dạ cao cấp dáng cúc nổi",Alias="mt66-ao-khoac-da-cao-cap-dang-cuc-noi",CategoryID=2,ThumbnailImage="/UploadedFiles/Products/MT66-ao-khoac-da-dang-dai-2-290x417.jpg",Price=1420000,OriginalPrice=1000000,PromotionPrice=1050000,IncludedVAT=true,Warranty=12,HomeFlag=true,HotFlag=true,CreatedDate=DateTime.Now,CreatedBy="admin",Status=true },
+                    new Product() { Name="LV719 Bộ vest dạ cách tân trẻ trung",Alias="lv719-bo-vest-da-cach-tan-tre-trung",CategoryID=2,ThumbnailImage="/UploadedFiles/Products/LV719-bo-vest-da-9-290x417.jpg",Price=1120000,OriginalPrice=1000000,PromotionPrice=1050000,IncludedVAT=true,Warranty=12,HomeFlag=true,HotFlag=true,CreatedDate=DateTime.Now,CreatedBy="admin",Status=true },
+                    new Product() { Name="LV719 Bộ vest dạ đẹp dáng áo cổ tròn",Alias="lv719-bo-vest-da-dep-dang-ao-co-tron",CategoryID=2,ThumbnailImage="/UploadedFiles/Products/LV719-bo-vest-da-3-290x417.jpg",Price=1520000,OriginalPrice=1000000,PromotionPrice=1050000,IncludedVAT=true,Warranty=12,HomeFlag=true,HotFlag=true,CreatedDate=DateTime.Now,CreatedBy="admin",Status=true },
+                    new Product() { Name="MT70 Áo khoác nữ dáng gile",Alias="mt70-ao-khoac-nu-dang-gile",CategoryID=2,ThumbnailImage="/UploadedFiles/Products/MT70-Ao-khoac-gile-2-290x417.jpg",Price=1270000,OriginalPrice=1000000,PromotionPrice=1050000,IncludedVAT=true,Warranty=12,HomeFlag=true,HotFlag=true,CreatedDate=DateTime.Now,CreatedBy="admin",Status=true },
+                    new Product() { Name="MT70 Áo vest nữ dáng dài kiểu gile",Alias="mt70-ao-vest-nu-dang-dai-kieu-gile",CategoryID=2,ThumbnailImage="/UploadedFiles/Products/MT70-Ao-vest-dang-dai-kieu-gile-2-290x417.jpg",Price=1460000,OriginalPrice=1000000,PromotionPrice=1050000,IncludedVAT=true,Warranty=12,HomeFlag=true,HotFlag=true,CreatedDate=DateTime.Now,CreatedBy="admin",Status=true },
+                    new Product() { Name="MT70 Áo gile nữ dáng dài",Alias="mt70-ao-gile-nu-dang-dai",CategoryID=2,ThumbnailImage="/UploadedFiles/Products/MT70-ao-khoac-gile-5-290x417.jpg",Price=1600000,OriginalPrice=1000000,PromotionPrice=1050000,IncludedVAT=true,Warranty=12,HomeFlag=true,HotFlag=true,CreatedDate=DateTime.Now,CreatedBy="admin",Status=true },
+                    new Product() { Name="MT61 Áo măng tô thời thượng kiểu cúc nổi",Alias="mt61-ao-mang-thoi-thuong-kieu-cuc-noi",CategoryID=2,ThumbnailImage="/UploadedFiles/Products/MT61C-ao-mang-to-da-dang-dai-2-290x417.jpg",Price=1360000,OriginalPrice=1000000,PromotionPrice=1050000,IncludedVAT=true,Warranty=12,HomeFlag=true,HotFlag=true,CreatedDate=DateTime.Now,CreatedBy="admin",Status=true },
+                    new Product() { Name="MT70 Áo vest nữ dáng dài kiểu gile",Alias="mt70-ao-vest-nu-dang-dai-kieu-gile",CategoryID=2,ThumbnailImage="/UploadedFiles/Products/MT70-Ao-vest-dang-dai-kieu-gile-2-290x417.jpg",Price=1460000,OriginalPrice=1000000,PromotionPrice=1050000,IncludedVAT=true,Warranty=12,HomeFlag=true,HotFlag=true,CreatedDate=DateTime.Now,CreatedBy="admin",Status=true },
 
+                };
+                context.Products.AddRange(listProduct);
+                context.SaveChanges();
+            }
+        }
         private void CreateFunction(TeduShopDbContext context)
         {
             if (context.Functions.Count() == 0)
